@@ -21,7 +21,7 @@ using namespace gemmi;
 void interpolate_points(
     Grid<float> moving_map,
     Grid<float> interpolated_map, 
-    std::vector<std::vector<float>> point_vec,
+    std::vector<std::vector<int>> point_vec,
     std::vector<Position> pos_vec,
     std::vector<Transform> transform_vec,
     std::vector<std::vector<float>> com_moving_vec,
