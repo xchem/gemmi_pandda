@@ -32,7 +32,7 @@ void interpolate_points(
     for (std::size_t i=0; i < points.size(); i++)
     {
         // Position
-        std::tuple<int,int,int> point = point_vec[i];
+        std::vector<int,int,int> point = point_vec[i];
         Position pos = pos_vec[i];
         Transform transform = transform_vec[i];
         std::vector<float> com_moving = com_moving_vec[i];
@@ -45,7 +45,7 @@ void interpolate_points(
         pos.z -= com_reference[2];
 
         //transform
-        Position pos_moving = transform.apply(pos);
+        Position pos_moving = Position(transform.apply(pos));
 
         // add reference com
         pos_moving.x += com_moving[0];
@@ -63,7 +63,7 @@ void interpolate_points(
             point[0],
             point[1],
             point[2],
-            interpolated_value,
+            interpolated_value
             );
 
     };
