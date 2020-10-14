@@ -25,7 +25,7 @@ void add_alignment(py::module& m); // monlib.cpp
 void add_select(py::module& m); // monlib.cpp
 
 //Custom
-void add_pandda(py::module& m);
+void add_pandda(py::module& m); //pandda.cpp
 
 void add_misc(py::module& m) {
   using gemmi::Element;
