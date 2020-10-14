@@ -29,7 +29,7 @@ void interpolate_points(
     )
 {
 
-    for (std::size_t i=0; i < points.size(); i++)
+    for (std::size_t i=0; i < point_vec.size(); i++)
     {
         // Position
         std::vector<int> point = point_vec[i];
