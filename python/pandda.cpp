@@ -21,11 +21,11 @@ using namespace gemmi;
 void interpolate_points(
     Grid<float> moving_map,
     Grid<float> interpolated_map, 
-    std::vector<std::tuple<int,int,int>> point_vec,
+    std::vector<std::vector<float>> point_vec,
     std::vector<Position> pos_vec,
-    std::vector<Transform> transforms,
-    std::vector<std::tuple<float,float,float>> com_moving_vec,
-    std::vector<std::tuple<float,float,float>> com_reference_vec,
+    std::vector<Transform> transform_vec,
+    std::vector<std::vector<float>> com_moving_vec,
+    std::vector<std::vector<float>> com_reference_vec
     )
 {
 
@@ -34,9 +34,9 @@ void interpolate_points(
         // Position
         std::tuple<int,int,int> point = point_vec[i];
         Position pos = pos_vec[i];
-        Transform transform = Transform[i];
-        std::tuple<float,float,float> com_moving = com_moving_vec[i];
-        std::tuple<float,float,float> com_reference = com_reference_vec[i];
+        Transform transform = transform_vec[i];
+        std::vector<float> com_moving = com_moving_vec[i];
+        std::vector<float> com_reference = com_reference_vec[i];
 
 
         //Subtract moving com
