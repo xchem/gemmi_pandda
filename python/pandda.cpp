@@ -27,7 +27,7 @@ Grid<float> interpolate_points(
     Grid<float> moving_map,
     Grid<float> interpolated_map, 
     std::vector<std::vector<int>> point_vec,
-    std::vector<Position> pos_vec,
+    std::vector<std::vector<float>> pos_vec,
     std::vector<Transform> transform_vec,
     std::vector<std::vector<float>> com_moving_vec,
     std::vector<std::vector<float>> com_reference_vec
@@ -38,7 +38,12 @@ Grid<float> interpolate_points(
     {
         // Position
         std::vector<int> point = point_vec[i];
-        Position pos = pos_vec[i];
+        std::vector<float> pos_python = pos_vec[i];
+        Position pos = Position(
+            pos_python[0],
+            pos_python[1],
+            pos_python[2]
+            );
         Transform transform = transform_vec[i];
         std::vector<float> com_moving = com_moving_vec[i];
         std::vector<float> com_reference = com_reference_vec[i];
