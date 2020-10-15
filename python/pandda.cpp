@@ -13,12 +13,17 @@
 #include <pybind11/numpy.h>
 #include "common.h"  // for normalize_index
 
+#include "ThreadPool.h"
+
 namespace py = pybind11;
 using namespace gemmi;
 
 
 
-void interpolate_points(
+
+
+
+Grid<float> interpolate_points(
     Grid<float> moving_map,
     Grid<float> interpolated_map, 
     std::vector<std::vector<int>> point_vec,
@@ -67,6 +72,8 @@ void interpolate_points(
             );
 
     };
+
+    return interpolated_map;
 
 
 }
