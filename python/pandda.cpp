@@ -49,7 +49,7 @@ Grid<float> interpolate_points(
         std::vector<float> com_reference = com_reference_vec[i];
 
 
-        //Subtract moving com
+        //Subtract reference com
         pos.x -= com_reference[0];
         pos.y -= com_reference[1];
         pos.z -= com_reference[2];
@@ -57,16 +57,16 @@ Grid<float> interpolate_points(
         //transform
         Position pos_moving = Position(transform.apply(pos));
 
-        // add reference com
+        // add moving com
         pos_moving.x += com_moving[0];
         pos_moving.y += com_moving[1];
         pos_moving.z += com_moving[2];
 
         // fractionalise
-        Fractional pos_moving_fractional = moving_map.unit_cell.fractionalize(pos_moving);
+        //Fractional pos_moving_fractional = moving_map.unit_cell.fractionalize(pos_moving);
 
         // interpolate
-        float interpolated_value = moving_map.interpolate_value(pos_moving_fractional);
+        float interpolated_value = moving_map.interpolate_value(pos_moving);
 
         // assign
         interpolated_map.set_value(
@@ -75,6 +75,7 @@ Grid<float> interpolate_points(
             point[2],
             interpolated_value
             );
+
 
     };
 
