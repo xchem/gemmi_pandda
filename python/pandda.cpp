@@ -79,12 +79,12 @@ Grid<float> interpolate_points(
         Fractional pos_moving_fractional = moving_map.unit_cell.fractionalize(pos_moving);
 
         // interpolate
-        std::cout << "interpolating: " << pos_moving_fractional.x << " " << pos_moving_fractional.y << " " << pos_moving_fractional.z << "\n"; 
+        //std::cout << "interpolating: " << pos_moving_fractional.x << " " << pos_moving_fractional.y << " " << pos_moving_fractional.z << "\n"; 
         Fractional wrapped = pos_moving_fractional.wrap_to_unit();
-        std::cout << "wrapped..." << wrapped.x << " " << wrapped.y << " " << wrapped.z << "\n";
-        std::cout << "interpolating..."; 
+        //std::cout << "wrapped..." << wrapped.x << " " << wrapped.y << " " << wrapped.z << "\n";
+        //std::cout << "interpolating..."; 
         float interpolated_value = moving_map.interpolate_value(pos_moving_fractional);
-        std::cout << "interpolated..."; 
+        //std::cout << "interpolated..."; 
 
 
         // assign
