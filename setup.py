@@ -123,8 +123,8 @@ class BuildExt(build_ext):
             opts.append(cpp_flag(self.compiler))
             if has_flag(self.compiler, '-fvisibility=hidden'):
                 opts.append('-fvisibility=hidden')
-            if has_flag(self.compiler, '-g0'):
-                opts.append('-g0')
+            if has_flag(self.compiler, '-g'):
+                opts.append('-g')
             if has_flag(self.compiler, '-Wl,-s'):
                 extra_link_args.append('-Wl,-s')
         elif ct == 'msvc':
