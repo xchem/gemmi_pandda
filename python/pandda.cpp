@@ -38,7 +38,7 @@ Grid<float> interpolate_points(
     for (std::size_t i=0; i < point_vec.size(); i++)
     {
         // Position
-        std::cout << "Getting postion\n";
+        // std::cout << "Getting postion\n";
         std::vector<int> point = point_vec[i];
         /*
         std::vector<float> pos_python = pos_vec[i];
@@ -48,50 +48,48 @@ Grid<float> interpolate_points(
             pos_python[2]
             );
         */
-        std::cout << "Getting gemmi point\n";
+        // std::cout << "Getting gemmi point\n";
         auto point_gemmi = interpolated_map.get_point(point[0], point[1], point[2]);
-        std::cout << "Getting gemmi position\n";
+        // std::cout << "Getting gemmi position\n";
         Position pos = interpolated_map.point_to_position(point_gemmi);
-        std::cout << "Getting transform\n"; 
+        // std::cout << "Getting transform\n"; 
         Transform transform = transform_vec[i];
-        std::cout << "Getting com moving\n"; 
+        // std::cout << "Getting com moving\n"; 
         std::vector<float> com_moving = com_moving_vec[i];
-        std::cout << "Getting reference\n"; 
+        // std::cout << "Getting reference\n"; 
         std::vector<float> com_reference = com_reference_vec[i];
 
-
         //Subtract reference com
-        std::cout << "Subtracting reference\n"; 
+        // std::cout << "Subtracting reference\n"; 
         pos.x -= com_reference[0];
         pos.y -= com_reference[1];
         pos.z -= com_reference[2];
 
         //transform
-        std::cout << "Transforming\n"; 
+        // std::cout << "Transforming\n"; 
         Position pos_moving = Position(transform.apply(pos));
 
         // add moving com
-        std::cout << "Adding moving\n"; 
+        // std::cout << "Adding moving\n"; 
         pos_moving.x += com_moving[0];
         pos_moving.y += com_moving[1];
         pos_moving.z += com_moving[2];
 
         // fractionalise
-        //Fractional pos_moving_fractional = moving_map.unit_cell.fractionalize(pos_moving);
+        Fractional pos_moving_fractional = moving_map.unit_cell.fractionalize(pos_moving);
 
         // interpolate
-        std::cout << "interpolating\n"; 
-        float interpolated_value = moving_map.interpolate_value(pos_moving);
+        // std::cout << "interpolating\n"; 
+        float interpolated_value = moving_map.interpolate_value(pos_moving_fractional);
 
         // assign
-        std::cout << "Assigning\n"; 
+        // std::cout << "Assigning\n"; 
         interpolated_map.set_value(
             point[0],
             point[1],
             point[2],
             interpolated_value
             );
-
 
     };
 
