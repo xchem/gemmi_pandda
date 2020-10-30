@@ -28,10 +28,10 @@ Grid<float> interpolate_points(
     Grid<float> moving_map,
     Grid<float> interpolated_map, 
     std::vector<std::vector<int>> point_vec,
-    std::vector<std::vector<float>> pos_vec,
+    std::vector<std::vector<double>> pos_vec,
     std::vector<Transform> transform_vec,
-    std::vector<std::vector<float>> com_moving_vec,
-    std::vector<std::vector<float>> com_reference_vec
+    std::vector<std::vector<double>> com_moving_vec,
+    std::vector<std::vector<double>> com_reference_vec
     )
 {
 
@@ -55,9 +55,9 @@ Grid<float> interpolate_points(
         // std::cout << "Getting transform\n"; 
         Transform transform = transform_vec[i];
         // std::cout << "Getting com moving\n"; 
-        std::vector<float> com_moving = com_moving_vec[i];
+        std::vector<double> com_moving = com_moving_vec[i];
         // std::cout << "Getting reference\n"; 
-        std::vector<float> com_reference = com_reference_vec[i];
+        std::vector<double> com_reference = com_reference_vec[i];
 
         //Subtract reference com
         // std::cout << "Subtracting reference\n"; 

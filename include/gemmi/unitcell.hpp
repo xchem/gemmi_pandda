@@ -38,7 +38,15 @@ struct Fractional : Vec3 {
     return Fractional(Vec3::operator+(o));
   }
   Fractional wrap_to_unit() const {
-    return {x - std::floor(x), y - std::floor(y), z - std::floor(z)};
+    double new_x = x - std::floor(x);
+    double new_y = y - std::floor(y);
+    double new_z = z - std::floor(z);
+
+    if (new_x > 0.9999) new_x = 0.0;
+    if (new_y > 0.9999) new_y = 0.0;
+    if (new_z > 0.9999) new_z = 0.0;
+    
+    return {new_x, new_y, new_z};
   }
   Fractional wrap_to_zero() const {
     return {x - std::round(x), y - std::round(y), z - std::round(z)};
