@@ -31,7 +31,8 @@ Grid<float> interpolate_points(
     std::vector<std::vector<double>> pos_vec,
     std::vector<Transform> transform_vec,
     std::vector<std::vector<double>> com_moving_vec,
-    std::vector<std::vector<double>> com_reference_vec
+    std::vector<std::vector<double>> com_reference_vec,
+    bool debug
     )
 {
 
@@ -95,6 +96,16 @@ Grid<float> interpolate_points(
             point[2],
             interpolated_value
             );
+
+        if (debug) {
+            std::cout << "Getting gemmi point" << point_gemmi.u << " " << point_gemmi.v << " " << point_gemmi.w << "\n";
+            std::cout << "Getting pos" << pos.x << " " << pos.y << " " << pos.z << "\n";
+            std::cout << "Getting pos moving" << pos_moving.x << " " << pos_moving.y << " " << pos_moving.z << "\n";
+            std::cout << "Getting pos_moving_fractional" << pos_moving_fractional.x << " " << pos_moving_fractional.y << " " << pos_moving_fractional.z << "\n";
+            std::cout << "Getting wrapped" << wrapped.x << " " << wrapped.y << " " << wrapped.z << "\n";
+            Fractional reference_fractional = interpolated_map.unit_cell.fractionalize(pos);
+            std::cout << "Getting native fractional" << wrapped.x << " " << wrapped.y << " " << wrapped.z << "\n";
+        };
 
     };
 
