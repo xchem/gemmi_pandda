@@ -100,11 +100,15 @@ Grid<float> interpolate_points(
         if (debug) {
             std::cout << "Getting gemmi point" << point_gemmi.u << " " << point_gemmi.v << " " << point_gemmi.w << "\n";
             std::cout << "Getting pos" << pos.x << " " << pos.y << " " << pos.z << "\n";
+            std::cout << "com reference" << com_reference[0] << " " << com_reference[1] << " " << com_reference[2] << "\n";
+
             std::cout << "Getting pos moving" << pos_moving.x << " " << pos_moving.y << " " << pos_moving.z << "\n";
+            std::cout << "com moving" << com_moving[0] << " " << com_moving[1] << " " << com_moving[2] << "\n";
+
             std::cout << "Getting pos_moving_fractional" << pos_moving_fractional.x << " " << pos_moving_fractional.y << " " << pos_moving_fractional.z << "\n";
             std::cout << "Getting wrapped" << wrapped.x << " " << wrapped.y << " " << wrapped.z << "\n";
             Fractional reference_fractional = interpolated_map.unit_cell.fractionalize(pos);
-            std::cout << "Getting native fractional" << wrapped.x << " " << wrapped.y << " " << wrapped.z << "\n";
+            std::cout << "Getting native fractional" << reference_fractional.x << " " << reference_fractional.y << " " << reference_fractional.z << "\n";
         };
 
     };
