@@ -62,19 +62,38 @@ Grid<float> interpolate_points(
 
         //Subtract reference com
         // std::cout << "Subtracting reference\n"; 
+        if (debug) {
+            std::cout << "###################" << "\n";
+            std::cout << "Before subtracting: " << pos.u << " " << pos.v << " " << pos.w << "\n";
+            std::cout << "com reference: " << com_reference[0] << " " << com_reference[1] << " " << com_reference[2] << "\n";
+        };
+
         pos.x -= com_reference[0];
         pos.y -= com_reference[1];
         pos.z -= com_reference[2];
 
+        if (debug) {
+            std::cout << "After subtracting: " << pos.u << " " << pos.v << " " << pos.w << "\n";
+        };
+
         //transform
         // std::cout << "Transforming\n"; 
         Position pos_moving = Position(transform.apply(pos));
+
+        if (debug) {
+            std::cout << "After transforming: " << pos_moving.u << " " << pos_moving.v << " " << pos_moving.w << "\n";
+        };
 
         // add moving com
         // std::cout << "Adding moving\n"; 
         pos_moving.x += com_moving[0];
         pos_moving.y += com_moving[1];
         pos_moving.z += com_moving[2];
+
+        if (debug) {
+            std::cout << "com moving: " << com_moving[0] << " " << com_moving[1] << " " << com_moving[2] << "\n";
+            std::cout << "After adding: " << pos_moving.u << " " << pos_moving.v << " " << pos_moving.w << "\n";
+        };
 
         // fractionalise
         Fractional pos_moving_fractional = moving_map.unit_cell.fractionalize(pos_moving);
@@ -97,19 +116,19 @@ Grid<float> interpolate_points(
             interpolated_value
             );
 
-        if (debug) {
-            std::cout << "Getting gemmi point" << point_gemmi.u << " " << point_gemmi.v << " " << point_gemmi.w << "\n";
-            std::cout << "Getting pos" << pos.x << " " << pos.y << " " << pos.z << "\n";
-            std::cout << "com reference" << com_reference[0] << " " << com_reference[1] << " " << com_reference[2] << "\n";
+        // if (debug) {
+        //     std::cout << "Getting gemmi point" << point_gemmi.u << " " << point_gemmi.v << " " << point_gemmi.w << "\n";
+        //     std::cout << "Getting pos" << pos.x << " " << pos.y << " " << pos.z << "\n";
+        //     std::cout << "com reference" << com_reference[0] << " " << com_reference[1] << " " << com_reference[2] << "\n";
 
-            std::cout << "Getting pos moving" << pos_moving.x << " " << pos_moving.y << " " << pos_moving.z << "\n";
-            std::cout << "com moving" << com_moving[0] << " " << com_moving[1] << " " << com_moving[2] << "\n";
+        //     std::cout << "Getting pos moving" << pos_moving.x << " " << pos_moving.y << " " << pos_moving.z << "\n";
+        //     std::cout << "com moving" << com_moving[0] << " " << com_moving[1] << " " << com_moving[2] << "\n";
 
-            std::cout << "Getting pos_moving_fractional" << pos_moving_fractional.x << " " << pos_moving_fractional.y << " " << pos_moving_fractional.z << "\n";
-            std::cout << "Getting wrapped" << wrapped.x << " " << wrapped.y << " " << wrapped.z << "\n";
-            Fractional reference_fractional = interpolated_map.unit_cell.fractionalize(pos);
-            std::cout << "Getting native fractional" << reference_fractional.x << " " << reference_fractional.y << " " << reference_fractional.z << "\n";
-        };
+        //     std::cout << "Getting pos_moving_fractional" << pos_moving_fractional.x << " " << pos_moving_fractional.y << " " << pos_moving_fractional.z << "\n";
+        //     std::cout << "Getting wrapped" << wrapped.x << " " << wrapped.y << " " << wrapped.z << "\n";
+        //     Fractional reference_fractional = interpolated_map.unit_cell.fractionalize(pos);
+        //     std::cout << "Getting native fractional" << reference_fractional.x << " " << reference_fractional.y << " " << reference_fractional.z << "\n";
+        // };
 
     };
 
