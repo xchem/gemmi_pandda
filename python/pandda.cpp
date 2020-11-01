@@ -35,7 +35,6 @@ Grid<float> interpolate_points(
     bool debug
     )
 {
-
     for (std::size_t i=0; i < point_vec.size(); i++)
     {
         // Position
@@ -49,6 +48,7 @@ Grid<float> interpolate_points(
             pos_python[2]
             );
         */
+
         // std::cout << "Getting gemmi point\n";
         auto point_gemmi = interpolated_map.get_point(point[0], point[1], point[2]);
         // std::cout << "Getting gemmi position\n";
