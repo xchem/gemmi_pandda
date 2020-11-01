@@ -64,7 +64,7 @@ Grid<float> interpolate_points(
         // std::cout << "Subtracting reference\n"; 
         if (debug) {
             std::cout << "###################" << "\n";
-            std::cout << "Before subtracting: " << pos.u << " " << pos.v << " " << pos.w << "\n";
+            std::cout << "Before subtracting: " << pos.x << " " << pos.y << " " << pos.z << "\n";
             std::cout << "com reference: " << com_reference[0] << " " << com_reference[1] << " " << com_reference[2] << "\n";
         };
 
@@ -73,7 +73,7 @@ Grid<float> interpolate_points(
         pos.z -= com_reference[2];
 
         if (debug) {
-            std::cout << "After subtracting: " << pos.u << " " << pos.v << " " << pos.w << "\n";
+            std::cout << "After subtracting: " << pos.x << " " << pos.y << " " << pos.z << "\n";
         };
 
         //transform
@@ -81,7 +81,7 @@ Grid<float> interpolate_points(
         Position pos_moving = Position(transform.apply(pos));
 
         if (debug) {
-            std::cout << "After transforming: " << pos_moving.u << " " << pos_moving.v << " " << pos_moving.w << "\n";
+            std::cout << "After transforming: " << pos_moving.x << " " << pos_moving.y << " " << pos_moving.z << "\n";
         };
 
         // add moving com
@@ -92,7 +92,7 @@ Grid<float> interpolate_points(
 
         if (debug) {
             std::cout << "com moving: " << com_moving[0] << " " << com_moving[1] << " " << com_moving[2] << "\n";
-            std::cout << "After adding: " << pos_moving.u << " " << pos_moving.v << " " << pos_moving.w << "\n";
+            std::cout << "After adding: " << pos_moving.x << " " << pos_moving.y << " " << pos_moving.z << "\n";
         };
 
         // fractionalise
