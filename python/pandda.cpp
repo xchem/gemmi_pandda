@@ -64,6 +64,7 @@ Grid<float> interpolate_points(
         // std::cout << "Subtracting reference\n"; 
         if (debug) {
             std::cout << "###################" << "\n";
+            std::cout << "Point: " << point[0] << " " << point[1] << " " << point[2] << "\n";
             std::vector<double> apparent_pos = pos_vec[i];
             std::cout << "Apparent pos: " << apparent_pos[0] << " " << apparent_pos[1] << " " << apparent_pos[2] << "\n";
             std::cout << "Before subtracting: " << pos.x << " " << pos.y << " " << pos.z << "\n";
