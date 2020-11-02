@@ -50,9 +50,10 @@ Grid<float> interpolate_points(
         */
 
         // std::cout << "Getting gemmi point\n";
-        auto point_gemmi = interpolated_map.get_point(point[0], point[1], point[2]);
+        //auto point_gemmi = interpolated_map.get_point(point[0], point[1], point[2]);
         // std::cout << "Getting gemmi position\n";
-        Position pos = interpolated_map.point_to_position(point_gemmi);
+        //Position pos = interpolated_map.point_to_position(point_gemmi);
+        Position pos = pos_vec[i];
         // std::cout << "Getting transform\n"; 
         Transform transform = transform_vec[i];
         // std::cout << "Getting com moving\n"; 
