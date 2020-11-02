@@ -69,9 +69,11 @@ Grid<float> interpolate_points(
         if (debug) {
             std::cout << "###################" << "\n";
             std::cout << "Point: " << point[0] << " " << point[1] << " " << point[2] << "\n";
-            std::vector<double> apparent_pos = pos_vec[i];
-            std::cout << "Apparent pos: " << apparent_pos[0] << " " << apparent_pos[1] << " " << apparent_pos[2] << "\n";
+            //std::vector<double> apparent_pos = pos_vec[i];
+            //std::cout << "Apparent pos: " << apparent_pos[0] << " " << apparent_pos[1] << " " << apparent_pos[2] << "\n";
             std::cout << "Before subtracting: " << pos.x << " " << pos.y << " " << pos.z << "\n";
+            Fractional pos_fractional = moving_map.unit_cell.fractionalize(pos_moving);
+            std::cout << "pos_fractional..." << pos_fractional.x << " " << pos_fractional.y << " " << pos_fractional.z << "\n";
             std::cout << "com reference: " << com_reference[0] << " " << com_reference[1] << " " << com_reference[2] << "\n";
         };
 
@@ -82,6 +84,7 @@ Grid<float> interpolate_points(
         if (debug) {
             std::cout << "After subtracting: " << pos.x << " " << pos.y << " " << pos.z << "\n";
         };
+
 
         //transform
         // std::cout << "Transforming\n"; 
@@ -104,10 +107,17 @@ Grid<float> interpolate_points(
 
         // fractionalise
         Fractional pos_moving_fractional = moving_map.unit_cell.fractionalize(pos_moving);
+        if (debug) {
+            std::cout << "pos_moving_fractional..." << pos_moving_fractional.x << " " << pos_moving_fractional.y << " " << pos_moving_fractional.z << "\n";
+        };
 
         // interpolate
         //std::cout << "interpolating: " << pos_moving_fractional.x << " " << pos_moving_fractional.y << " " << pos_moving_fractional.z << "\n"; 
         Fractional wrapped = pos_moving_fractional.wrap_to_unit();
+        if (debug) {
+            std::cout << "wrapped..." << wrapped.x << " " << wrapped.y << " " << wrapped.z << "\n";
+        };
+
         //std::cout << "wrapped..." << wrapped.x << " " << wrapped.y << " " << wrapped.z << "\n";
         //std::cout << "interpolating..."; 
         float interpolated_value = moving_map.interpolate_value(pos_moving_fractional);
