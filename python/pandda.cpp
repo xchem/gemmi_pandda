@@ -21,7 +21,13 @@ namespace py = pybind11;
 using namespace gemmi;
 
 
-
+inline int modulo(int a, int n) {
+  if (a >= n)
+    a %= n;
+  else if (a < 0)
+    a = (a + 1) % n + n - 1;
+  return a;
+}
 
 
 Grid<float> interpolate_points(
@@ -49,12 +55,20 @@ Grid<float> interpolate_points(
             );
         */
 
+
+
         // std::cout << "Getting gemmi point\n";
-        //auto point_gemmi = interpolated_map.get_point(point[0], point[1], point[2]);
+
+        Fractional fractional = Fractional(
+            point[0] * (1.0 / interpolated_map.nu), 
+            point[1] * (1.0 / interpolated_map.nv), 
+            point[2] * (1.0 / interpolated_map.nw)
+            );
+        Position pos = interpolated_map.unit_cell.orthogonalize(fractional);
         // std::cout << "Getting gemmi position\n";
         //Position pos = interpolated_map.point_to_position(point_gemmi);
-        std::vector<double> pos_python = pos_vec[i];
-        Position pos = Position(pos_python[0], pos_python[1], pos_python[2]);
+        //std::vector<double> pos_python = pos_vec[i];
+        //Position pos = Position(pos_python[0], pos_python[1], pos_python[2]);
         // std::cout << "Getting transform\n"; 
         Transform transform = transform_vec[i];
         // std::cout << "Getting com moving\n"; 
@@ -63,17 +77,15 @@ Grid<float> interpolate_points(
         std::vector<double> com_reference = com_reference_vec[i];
 
 
-
         //Subtract reference com
         // std::cout << "Subtracting reference\n"; 
         if (debug) {
             std::cout << "###################" << "\n";
             std::cout << "Point: " << point[0] << " " << point[1] << " " << point[2] << "\n";
-            //std::vector<double> apparent_pos = pos_vec[i];
-            //std::cout << "Apparent pos: " << apparent_pos[0] << " " << apparent_pos[1] << " " << apparent_pos[2] << "\n";
+            std::cout << "pos_fractional..." << fractional.x << " " << fractional.y << " " << fractional.z << "\n";
+            Fractional pos_wrapped = fractional.wrap_to_unit();
+            std::cout << "pos_fractional wrapped..." << pos_wrapped.x << " " << pos_wrapped.y << " " << pos_wrapped.z << "\n";
             std::cout << "Before subtracting: " << pos.x << " " << pos.y << " " << pos.z << "\n";
-            Fractional pos_fractional = moving_map.unit_cell.fractionalize(pos_moving);
-            std::cout << "pos_fractional..." << pos_fractional.x << " " << pos_fractional.y << " " << pos_fractional.z << "\n";
             std::cout << "com reference: " << com_reference[0] << " " << com_reference[1] << " " << com_reference[2] << "\n";
         };
 
