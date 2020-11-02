@@ -76,7 +76,6 @@ Grid<float> interpolate_points(
         // std::cout << "Getting reference\n"; 
         std::vector<double> com_reference = com_reference_vec[i];
 
-
         //Subtract reference com
         // std::cout << "Subtracting reference\n"; 
         if (debug) {
