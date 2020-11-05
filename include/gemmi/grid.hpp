@@ -378,8 +378,8 @@ struct Grid : GridBase<T> {
     for (int w = w0-dw; w <= w0+dw; ++w)
       for (int v = v0-dv; v <= v0+dv; ++v)
         for (int u = u0-du; u <= u0+du; ++u) {
-          //Check if u/v/w and u0/v0/w0 are in different unit cells
-          if ((u / nu) != (u0 / nu) || (v / nv) != (v0 / nv) || (w / nw) != (w0 / nw)) {
+          //Check if u/v/w and u0/v0/w0 are in different unit cells: they are in
+          if (u <0 || u >= nu || v <0 || v >= nv ||w <0 || w >= nw) {
             continue;
           }
           else {
