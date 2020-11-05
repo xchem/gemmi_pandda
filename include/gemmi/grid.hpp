@@ -382,12 +382,14 @@ struct Grid : GridBase<T> {
           if ((u / nu) != (u0 / nu) || (v / nv) != (v0 / nv) || (w / nw) != (w0 / nw)) {
             continue;
           }
+          else {
 
-          Fractional fdelta{fctr.x - u * (1.0 / nu),
-                            fctr.y - v * (1.0 / nv),
-                            fctr.z - w * (1.0 / nw)};
-          Position delta = unit_cell.orthogonalize_difference(fdelta);
-          func(data[index_n(u, v, w)], delta);
+            Fractional fdelta{fctr.x - u * (1.0 / nu),
+                              fctr.y - v * (1.0 / nv),
+                              fctr.z - w * (1.0 / nw)};
+            Position delta = unit_cell.orthogonalize_difference(fdelta);
+            func(data[index_n(u, v, w)], delta);
+          }
         }
   }
 
