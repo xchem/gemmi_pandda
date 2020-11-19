@@ -139,6 +139,8 @@ void add_grid(py::module& m, const std::string& name) {
     .def("set_unit_cell", (void (Gr::*)(const UnitCell&)) &Gr::set_unit_cell)
     .def("set_points_around", &Gr::set_points_around,
          py::arg("position"), py::arg("radius"), py::arg("value"))
+    .def("set_points_around_non_overlapping", &Gr::set_points_around_non_overlapping,
+      py::arg("position"), py::arg("radius"), py::arg("value"))    
     .def("symmetrize_min", &Gr::symmetrize_min)
     .def("symmetrize_max", &Gr::symmetrize_max)
     .def("asu", &Gr::asu)
